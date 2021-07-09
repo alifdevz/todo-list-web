@@ -3,23 +3,21 @@ const UNCOMPLETED_LIST_TODO_ID = 'todos';
 function addTodo() {
     const uncompletedTODOList = document.getElementById(UNCOMPLETED_LIST_TODO_ID);
 
-    for (let i = 0; i < 10; i++) {
-        const todo = makeTodo();
-        uncompletedTODOList.append(todo);
-    }
-    
     const textTodo = document.getElementById('title').value;
     const timeStamp = document.getElementById('date').value;
-    console.log('todo: ' + textTodo);
-    console.log('timestamp: ' + timeStamp);
+    // console.log('todo: ' + textTodo);
+    // console.log('timestamp: ' + timeStamp);
+
+    const todo = makeTodo(textTodo, timeStamp);
+    uncompletedTODOList.append(todo);
 }
 
-function makeTodo() {
+function makeTodo(data, timeStamp) {
     const textTitle = document.createElement('h2');
-    textTitle.innerText = 'Tugas Android';
+    textTitle.innerText = data;
 
     const textTimeStamp = document.createElement('p');
-    textTimeStamp.innerText = '2021-05-01';
+    textTimeStamp.innerText = timeStamp;
 
     const textContainer = document.createElement('div');
     textContainer.classList.add('inner');
