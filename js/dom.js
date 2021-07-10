@@ -57,3 +57,13 @@ function createCheckButton() {
         addTaskToCompleted(event.target.parentElement);
     });
 }
+
+function removeTaskFromCompleted(taskElement) {
+    taskElement.remove();
+}
+
+function createTrashButton() {
+    return createButton('trash-button', function(event) {
+        removeTaskFromCompleted(event.target.parentElement);
+    });
+}
