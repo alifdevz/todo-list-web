@@ -13,7 +13,7 @@ function addTodo() {
     uncompletedTODOList.append(todo);
 }
 
-function makeTodo(data, timeStamp) {
+function makeTodo(data, timeStamp, isCompleted) {
     const textTitle = document.createElement('h2');
     textTitle.innerText = data;
 
@@ -28,7 +28,11 @@ function makeTodo(data, timeStamp) {
     container.classList.add('item', 'shadow');
     container.append(textContainer);
 
-    container.append(createCheckButton());
+    if (isCompleted) {
+        container.append(createTrashButton());
+    } else {
+        container.append(createCheckButton());
+    }
 
     return container;
 }
@@ -46,7 +50,7 @@ function addTaskToCompleted(taskElement) {
     const taskTitle = taskElement.querySelector('.inner > h2').innerText;
     const taskTimeStamp = taskElement.querySelector('.inner > p').innerText;
 
-    const newTodo = makeTodo(taskTitle, taskTimeStamp);
+    const newTodo = makeTodo(taskTitle, taskTimeStamp, true);
     const listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
     listCompleted.append(newTodo);
     taskElement.remove();
@@ -66,4 +70,8 @@ function createTrashButton() {
     return createButton('trash-button', function(event) {
         removeTaskFromCompleted(event.target.parentElement);
     });
+}
+
+function undoTaskFromCompleted(taskElement) {
+
 }
