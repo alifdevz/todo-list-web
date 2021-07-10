@@ -43,11 +43,17 @@ function createButton(buttonTypeClass, eventListener) {
 }
 
 function addTaskToCompleted(taskElement) {
+    const taskTitle = taskElement.querySelector('.inner > h2').innerText;
+    const taskTimeStamp = taskElement.querySelector('.inner > p').innerText;
+
+    const newTodo = makeTodo(taskTitle, taskTimeStamp);
+    const listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
+    listCompleted.append(newTodo);
     taskElement.remove();
 }
 
 function createCheckButton() {
     return createButton('check-button', function(event) {
         addTaskToCompleted(event.target.parentElement);
-    })
+    });
 }
